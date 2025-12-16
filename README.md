@@ -1,6 +1,6 @@
 # KissNeighbor
 
-A macOS utility that instantly resizes the frontmost window to extend rightward until it touches the next adjacent window.
+A macOS utility that **instantly** resizes the frontmost window to extend rightward until it touches the next adjacent window.
 
 ## What it does
 
@@ -11,38 +11,50 @@ KissNeighbor uses the Accessibility API to:
 
 Perfect for quick window tiling without manual resizing.
 
-## Installation
+## Quick Setup
 
-### With Raycast (Recommended)
-
-1. Copy `kissneighbor.sh` to `~/.config/raycast/scripts/`
-2. Open Raycast and search for "KissNeighbor"
-3. Go to Raycast Preferences → Hotkeys
-4. Assign **Cmd+Shift+K** to KissNeighbor
-5. Grant Raycast Accessibility permissions in **System Settings → Privacy & Security → Accessibility**
-
-### Manual usage
+### 1. Compile the binary
 
 ```bash
-./kissneighbor.sh
+cd ~/Documents/GitHub/KissNeighbor
+chmod +x build.sh
+./build.sh
 ```
+
+### 2. Grant Accessibility Permissions
+
+**System Settings → Privacy & Security → Accessibility** → Add **Hammerspoon**
+
+### 3. Install & Configure Hammerspoon
+
+```bash
+# Install Hammerspoon
+brew install hammerspoon
+
+# The config is already created at ~/.hammerspoon/init.lua
+# Just open Hammerspoon from Applications
+open /Applications/Hammerspoon.app
+```
+
+### 4. Done!
+
+Press **Cmd+Shift+K** anytime to extend the active window right. No UI, instant execution.
 
 ## How it works
 
-Pure shell script using JXA (JavaScript for Automation):
-- Instant execution with zero Swift runtime overhead
-- Finds the frontmost window
-- Scans all other app windows for ones to the right
-- Resizes to touch the closest neighbor
+- **Compiled Objective-C binary** for instant execution (~5ms)
+- **Hammerspoon** runs in background as a daemon
+- Responds instantly to global hotkeys with zero delay
+- No UI popups, completely silent
 
-## Permissions
+## Files
 
-KissNeighbor requires Accessibility permissions to interact with windows. Grant access in:
-
-**System Settings → Privacy & Security → Accessibility**
-
-Add Raycast to the list (or Terminal if running manually).
+- `kissneighbor.m` - Objective-C source
+- `build.sh` - Compilation script
+- `kissneighbor` - Compiled binary (generated)
+- `~/.hammerspoon/init.lua` - Hammerspoon config
 
 ## License
 
 MIT
+can

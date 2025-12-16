@@ -1,11 +1,13 @@
-# Build artifacts and binaries
+# Build artifacts
+kissneighbor
+*.o
+*.dSYM/
+
+# Old Swift implementation
+main.swift
 KissNeighbor
 KissNeighbor.app/
-*.o
-*.swiftmodule
-
-# Old Swift implementation (deprecated)
-main.swift
 
 # OS files
 .DS_Store
+
